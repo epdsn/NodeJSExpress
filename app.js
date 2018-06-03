@@ -1,25 +1,14 @@
-const http = require('http');
-const fs = require('fs');
-const hostname = '127.0.0.1';
-const port =  3000;
+var http = require('http');
+var module1 = require('./module1');
+var module2 = require('./module2');
 
+function onRequest(request, response) {
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.write(module2.myVariable);
+    module2.myFunction();
+    response.end();
+}
 
-fs.readFile('index.html', (err, html) => {
-    if(err) {
-        throw err;
-    }
-
-    const server = http.createServer((req, res) => {
-        res.statusCode =200;
-        res.setHeader('Content-type', 'text/html');
-        res.write(html);    
-    });
-
-    server.listen(port,hostname, () =>{
-        console.log('Server started on port '+ port);
-    })
-
-} );
-
+http.createServer(onRequest).listen(8000);
 
 
