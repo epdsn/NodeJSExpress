@@ -3,14 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-/* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
-});
-router.get('/users/detail', function(req, res, next) {
-  res.send('detail');
+  res.render('index', { title: 'Cool, huh!', condition: true, anyArray: [1,2,3] });
 });
 
 module.exports = router;
